@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>corosole</title>
+<link rel="stylesheet" href="icons/css/font-awesome.css">
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliders {
+  width: 1170px;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliders img {
+  width: 1300px;
+  height:500px;
+}
+
+.slideritem, .hidden {
+  display: none;
+  list-style-type:none;
+}
+
+.active {
+  display: block;
+}
+
+.s-btns {
+  width: 100%;
+  position: absolute;
+  top: 300px;
+  display: flex;
+  justify-content: space-around;
+  transform: translateY(-50%);
+}
+
+.s-btns button {
+  font-size: 22px;
+  font-weight: 800;
+  padding: 5px 10px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="container">
+	<ul class="sliders">
+		<li class="slideritem active">
+			<img src="./images/dog.png" />
+		</li>
+		<li class="slideritem">
+			<img src="./images/Panda1.jpg" />
+		</li>
+		<li class="slideritem">
+			<img src="./images/tree1.jpg" />
+		</li>
+		<li class="slideritem">
+			<img src="./images/rose.jpg" />
+		</li>
+		<div class="s-btns">
+			<button id="left">
+				<i class="fa fa-caret-left material-icons" aria-hidden="true"></i>
+				<!-- <i class="material-icons">chevron_left</i> -->
+			</button>
+			<button id="right">
+				<i class="fa fa-caret-right material-icons" aria-hidden="true"></i>
+				<!-- <i class="material-icons">chevron_right</i> -->
+			</button>
+		</div>
+	</ul>
+</div>
+
+
+
+<script>
+
+let defaultNo = 0;
+let sliderItems = document.querySelectorAll(".slideritem");
+let totalImg = sliderItems.length;
+
+let left = document.getElementById("left");
+let right = document.getElementById("right");
+
+left.addEventListener("click", function(e) {
+  leftSlide();
+});
+
+right.addEventListener("click", function(e) {
+  rightSlide();
+});
+
+function updatePosition() {
+  sliderItems.forEach( function(slide) {
+    slide.classList.remove("active");
+    slide.classList.add("hidden");
+  });
+  sliderItems[defaultNo].classList.add("active");
+}
+
+function leftSlide() {
+	if(defaultNo == 0){
+		defaultNo=totalImg-1;
+	}
+	else{
+		defaultNo--;
+	}
+  
+  updatePosition();
+}
+
+function rightSlide() {
+	if(defaultNo==totalImg-1){
+		defaultNo=0;
+	}
+	else{
+		defaultNo++;
+	}
+  
+  updatePosition();
+}
+
+</script>
+</body>
+
+</html>
